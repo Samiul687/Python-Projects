@@ -1,20 +1,13 @@
-number = input("Please input any number:\n")               # Asking for User to input a value to be checked
-digits = [int(x) for x in str(number)]                     # Converting the input into a list
-length = len(digits)                                       # Assigning constant "length" number of elements in the list.
-total = 0                                                  # Variables must be defined
-n = length                                                 # Similar to constant "length" but variable
-
-if length == 1:
-    print("All 1 digit numbers are Armstrong Numbers")
-elif length == 2:
-    print("No 2 digit numbers are Armstrong Numbers")
-else:
-    while n != 0:                                          # While loop for when n is not zero
-        first = (digits[n - 1] ** length)                  # Working out each Exponent
-        total += first                                     # Adding each exponent to the total
-        n -= 1                                             # Subtracting from n moves to the next element in the list
-
-    if total == int(number):
-        print("Yes,", number, "is an Armstrong Number")
+def is_armstrong(number):                                          # Function to test numbers
+    digits = (int(x) for x in str(number))                         # Generator expression to separate digits
+    if sum(i ** len(number) for i in digits) == int(number):       # Finding total of all digits to the power of length, comparing to input
+        return True                                                # Function will output true
     else:
-        print("This is not an Armstrong Number")
+        return False                                               # Function will output false
+
+
+number = input("Please input any number:\n")
+if is_armstrong(number):                                           # if Function returns true
+    print("Yes,", number, "is an Armstrong Number")
+else:
+    print('This is not an Armstrong Number')                       # if Function returns false
